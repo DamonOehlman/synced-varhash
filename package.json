@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/DamonOehlman/synced-varhash/issues"
   },
-  "homepage": "https://github.com/DamonOehlman/synced-varhash"
+  "homepage": "https://github.com/DamonOehlman/synced-varhash",
+  "devDependencies": {
+    "crdt": "^3.6.4",
+    "tape": "^3.5.0",
+    "whisk": "^1.1.0"
+  },
+  "dependencies": {
+    "observ-varhash": "^1.0.4"
+  }
 }
