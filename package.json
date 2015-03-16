@@ -1,0 +1,23 @@
+{
+  "name": "synced-varhash",
+  "version": "1.0.0",
+  "description": "An observ-varhash implementation that is created from and kept in sync with a CRDT set",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/synced-varhash.git"
+  },
+  "keywords": [
+    "crdt",
+    "observ"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/synced-varhash/issues"
+  },
+  "homepage": "https://github.com/DamonOehlman/synced-varhash"
+}
