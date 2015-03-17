@@ -1,6 +1,6 @@
 {
   "name": "synced-varhash",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An observ-varhash implementation that is created from and kept in sync with a CRDT set",
   "main": "index.js",
   "scripts": {
