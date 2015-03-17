@@ -2,6 +2,21 @@ var extend = require('cog/extend');
 var VarHash = require('observ-varhash');
 var xdiff = require('xdiff');
 
+/**
+  # synced-varhash
+
+  This is a package that keeps a local
+  [`observ-varhash`](https://github.com/nrw/observ-varhash) in sync with a
+  [CRDT Set](https://github.com/dominictarr/crdt#set).
+
+  ## Why?
+
+  This is useful in the case that you have a front-end application written
+  using [`mercury`](https://github.com/Raynos/mercury) (or similar) and you
+  want to keep a varhash in sync between a number of entities. The case that
+  I've used this with is WebRTC and it's pretty awesome :)
+
+**/
 module.exports = function(type) {
   function createSet(doc) {
     var hash = VarHash();
