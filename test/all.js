@@ -1,2 +1,2 @@
-require('./add');
-require('./add-observable');
+require('./plain');
+require('./observable');
