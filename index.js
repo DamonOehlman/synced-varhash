@@ -26,7 +26,14 @@ var xdiff = require('xdiff');
   data is serialized at this time.
 
 **/
-module.exports = function(type) {
+module.exports = function(opts) {
+  var type = (opts || {}).type || 'syncedset'
+
+  // if we have been passed a string value for opts, use that as type
+  if (typeof opts == 'string' || (opts instanceof String)) {
+    type = opts;
+  }
+
   function createSet(doc) {
     var hash = VarHash();
     var set = doc.createSet('__itemtype', type);
