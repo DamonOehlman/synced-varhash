@@ -1,2 +1,2 @@
 require('./plain');
-require('./observable');
+require('./remove-multi');
