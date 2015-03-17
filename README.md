@@ -7,7 +7,7 @@ This is a package that keeps a local
 
 [![NPM](https://nodei.co/npm/synced-varhash.png)](https://nodei.co/npm/synced-varhash/)
 
-
+[![Build Status](https://img.shields.io/travis/DamonOehlman/synced-varhash.svg?branch=master)](https://travis-ci.org/DamonOehlman/synced-varhash) 
 
 ## Why?
 
