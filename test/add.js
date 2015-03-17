@@ -20,7 +20,14 @@ test('create the hashes', function(t) {
 
 test('add to hash:0 and look for changes in the other hashes', function(t) {
   var id = cuid();
+  var data = {
+    foo: 'bar',
+    items: [1, 2, 3],
+    sub: {
+      text: 'hello'
+    }
+  };
 
-  monitor(t, hashes, id, { foo: 'bar' });
-  hashes[0].put(id, { foo: 'bar' });
+  monitor(t, hashes, id, data);
+  hashes[0].put(id, data);
 });
