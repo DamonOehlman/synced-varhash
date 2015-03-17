@@ -16,6 +16,39 @@ using [`mercury`](https://github.com/Raynos/mercury) (or similar) and you
 want to keep a varhash in sync between a number of entities. The case that
 I've used this with is WebRTC and it's pretty awesome :)
 
+## Example Usage
+
+```js
+var Doc = require('crdt').Doc;
+var SyncedHash = require('synced-varhash');
+var cuid = require('cuid');
+
+// create two documents
+var docs = [new Doc(), new Doc()];
+
+// create the hashes
+var hashes = docs.map(SyncedHash());
+
+// create the replication streams
+var streams = docs.map(function(doc) {
+  return doc.createStream();
+});
+
+// replicate between doc:0 and doc:1
+streams[0].pipe(streams[1]).pipe(streams[0]);
+
+// watch hash:1 for changes
+hashes[1](function(data) {
+  console.log('hash:1 changed: ', data);
+});
+
+// add some docs to hash:0
+setInterval(function() {
+  hashes[0].put(cuid(), { tick: Date.now() });
+}, 1000);
+
+```
+
 ## Known Limitations
 
 While `synced-varhash` is capable of serializing nested observables (such

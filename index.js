@@ -17,6 +17,10 @@ var xdiff = require('xdiff');
   want to keep a varhash in sync between a number of entities. The case that
   I've used this with is WebRTC and it's pretty awesome :)
 
+  ## Example Usage
+
+  <<< examples/simple.js
+
   ## Known Limitations
 
   While `synced-varhash` is capable of serializing nested observables (such
