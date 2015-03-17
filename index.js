@@ -45,20 +45,28 @@ module.exports = function(type) {
       Object.keys(data._diff).forEach(function(key) {
         var id = toId(key);
         var existing = set.get(id);
-        var item = existing && existing.state && omit(existing.state);
+        var removed = !data._diff[key];
+        var item = (!removed) && existing && existing.state && omit(existing.state);
         var currentData = unwrap(data[key]);
         var diff = item && currentData && xdiff.diff(item, currentData);
 
-        if (! existing) {
-          doc.add(extend({ id: id, itemtype: type }, currentData));
+        // handle adds
+        if (! (removed || existing)) {
+          return doc.add(extend({ id: id, itemtype: type }, currentData));
         }
-        else if (diff) {
-          existing.set(xdiff.patch(existing.state, diff));
+
+        if (diff) {
+          return existing.set(xdiff.patch(existing.state, diff));
         }
-        else if (! data[key]) {
-          doc.rm(id);
+
+        if (removed) {
+          return doc.rm(id);
         }
       });
+    });
+
+    set.on('add', function(row) {
+      hash.put(toKey(row.id), omit(row.state));
     });
 
     // handle crdt set removals
@@ -72,10 +80,7 @@ module.exports = function(type) {
       var data = key && hash.get(key);
       var diff = data && xdiff.diff(unwrap(data), omit(changed));
 
-      if (! data) {
-        hash.put(key, omit(changed));
-      }
-      else if (diff) {
+      if (diff) {
         hash.put(key, xdiff.patch(data, diff));
       }
     });
