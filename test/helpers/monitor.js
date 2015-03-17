@@ -11,7 +11,12 @@ module.exports = function(t, hashes, id, expected, timeout) {
     }, timeout || 1000);
 
     var stop = hash(function(data) {
-      if (! xdiff.diff(unwrap(data[id]), unwrap(expected))) {
+      if (expected === undefined === data[id]) {
+        t.pass('item ' + id + ' has been deleted as expected');
+        clearTimeout(timer);
+        stop();
+      }
+      else if (! xdiff.diff(unwrap(data[id]), unwrap(expected))) {
         t.pass('item ' + id + ' has stabilised with expected data');
         clearTimeout(timer);
         stop();
