@@ -24,11 +24,13 @@
   "devDependencies": {
     "crdt": "^3.6.4",
     "cuid": "^1.2.4",
+    "observ": "^0.2.0",
     "tape": "^3.5.0",
     "whisk": "^1.1.0"
   },
   "dependencies": {
     "cog": "^1.0.0",
+    "observ-unwrap": "^1.1.0",
     "observ-varhash": "^1.0.4",
     "omit": "^1.0.0",
     "xdiff": "^0.2.11"
