@@ -12,7 +12,7 @@ test('create a 4 way synced mesh', function(t) {
 
 test('create the hashes', function(t) {
   t.plan(mesh.length);
-  hashes = mesh.map(syncedHash('test'));
+  hashes = mesh.map(syncedHash());
   hashes.forEach(function(hash) {
     t.ok(hash);
   });
