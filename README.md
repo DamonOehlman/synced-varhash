@@ -16,6 +16,14 @@ using [`mercury`](https://github.com/Raynos/mercury) (or similar) and you
 want to keep a varhash in sync between a number of entities. The case that
 I've used this with is WebRTC and it's pretty awesome :)
 
+## Known Limitations
+
+While `synced-varhash` is capable of serializing nested observables (such
+as [`observ-struct`](https://github.com/Raynos/observ-struct)) over a
+CRDT, at this stage the deserialized data will be simple JS types on the
+receiver ends.  For this reason, it is recommended that only simple
+data is serialized at this time.
+
 ## License(s)
 
 ### ISC
