@@ -1,4 +1,5 @@
 var extend = require('cog/extend');
+var unwrap = require('observ-unwrap');
 var VarHash = require('observ-varhash');
 var xdiff = require('xdiff');
 
@@ -37,10 +38,11 @@ module.exports = function(type) {
         var id = toId(key);
         var existing = set.get(id);
         var item = existing && existing.state && omit(existing.state);
-        var diff = item && xdiff.diff(item, data[key]);
+        var currentData = unwrap(data[key]);
+        var diff = item && currentData && xdiff.diff(item, currentData);
 
         if (! existing) {
-          doc.add(extend({ id: id, itemtype: type }, data[key]));
+          doc.add(extend({ id: id, itemtype: type }, currentData));
         }
         else if (diff) {
           console.log('got diff: ', diff);
