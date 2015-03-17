@@ -29,11 +29,11 @@ var xdiff = require('xdiff');
 module.exports = function(type) {
   function createSet(doc) {
     var hash = VarHash();
-    var set = doc.createSet('itemtype', type);
-    var omit = require('omit')(['id', 'itemtype']);
+    var set = doc.createSet('__itemtype', type);
+    var omit = require('omit')(['id', '__itemtype']);
 
     function toId(key) {
-      return type + ':' + key;
+      return type + '__:' + key;
     }
 
     function toKey(id) {
@@ -52,7 +52,7 @@ module.exports = function(type) {
 
         // handle adds
         if (! (removed || existing)) {
-          return doc.add(extend({ id: id, itemtype: type }, currentData));
+          return doc.add(extend({ id: id, __itemtype: type }, currentData));
         }
 
         if (diff) {
