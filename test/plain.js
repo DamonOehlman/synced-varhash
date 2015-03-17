@@ -31,3 +31,21 @@ test('add to hash:0 and look for changes in the other hashes', function(t) {
   monitor(t, hashes, id, data);
   hashes[0].put(id, data);
 });
+
+test('modify the data in hash:1 and look for changes in the other hashes', function(t) {
+  var id = Object.keys(hashes[1])[0];
+  var data = hashes[1].get(id);
+
+  // update the data
+  data.foo = 'baz';
+
+  monitor(t, hashes, id, data);
+  hashes[1].put(id, data);
+});
+
+test('remove an item from the hash:0 and have the other hashes fall into line', function(t) {
+  var id = Object.keys(hashes[0])[0];
+
+  monitor(t, hashes, id);
+  hashes[0].delete(id);
+});
